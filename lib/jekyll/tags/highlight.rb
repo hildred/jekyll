@@ -56,10 +56,20 @@ eos
 
         @options[:encoding] = 'utf-8'
 
-        output = add_code_tags(
-          Pygments.highlight(code, :lexer => @lang, :options => @options),
-          @lang
-        )
+        highlighted_code = Pygments.highlight(code, :lexer => @lang, :options => @options)
+
+        if highlighted_code.nil?
+          Jekyll.logger.error "There was an error highlighting your code:"
+          puts
+          Jekyll.logger.error code
+          puts
+          Jekyll.logger.error "While attempting to convert the above code, Pygments.rb" +
+            " returned an unacceptable value."
+          Jekyll.logger.error "This is usually solved by running `jekyll build` again."
+          raise ArgumentError.new("Pygments.rb returned an unacceptable value when attempting to highlight some code.")
+        end
+
+        output = add_code_tags(highlighted_code, @lang)
 
         output = context["highlighter_prefix"] + output if context["highlighter_prefix"]
         output << context["highlighter_suffix"] if context["highlighter_suffix"]
