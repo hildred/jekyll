@@ -51,6 +51,7 @@
   * Ship Sass support as a separate gem (#2098)
   * Extract core extensions into a Utils module (#2112)
   * Refactor CLI & Commands For Greater Happiness (#2143)
+  * Provide useful error when Pygments returns `nil` and error out (#2148)
 
 ### Bug Fixes
   * Don't allow nil entries when loading posts (#1796)
@@ -98,6 +99,8 @@
   * Add Japanese translation of README and CONTRIBUTING docs. (#2081)
   * Re-align the tables in Cucumber (#2108)
   * Trim trailing spaces and convert tabs to spaces (#2122)
+  * Fix the failing Travis scenarios due to Cucumber issues (#2155)
+  * Wrap `bundle install` in `travis_retry` to retry when RubyGems fails (#2160)
 
 ### Site Enhancements
   * Document Kramdown's GFM parser option (#1791)
@@ -150,6 +153,8 @@
   * Update normalize.css to 3.0.0 (#2126)
   * Update modernizr to v2.7.1 (#2129)
   * Add `jekyll-ordinal` to list of third-party plugins (#2150)
+  * Add `jekyll_figure` to list of third-party plugins (#2158)
+  * Clarify the documentation for safe mode (#2163)
 
 ## 1.4.3 / 2014-01-13
 
